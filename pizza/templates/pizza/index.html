@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Signup</a>
+        {% endif %}
+    </nav>
+    <h1>
+        What's your favourite pizza?
+    </h1>
+    <ul>
+        {% for pizza in pizzas %}
+        <a href="{% url 'pizza-show' pizza_id=pizza.id %}">
+            <li>
+                {{ pizza.name }} and tastes like {{ pizza.tastiness }}
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+</body>
+</html>
